@@ -30,17 +30,28 @@ class LinkedListStack {
 
     /* 出栈 */
     public int pop(){
-
+        var v = stackPeek.val;
+        stackPeek = stackPeek.next;
+        stkSize--;
+        return v;
     }
 
     /* 访问栈顶元素 */
     public int peek(){
-
+        return stackPeek.val;
     };
 
     /* 将 List 转化为 Array 并返回 */
     public int[] toArray(){
-
+        int[] array = new int[stkSize];
+        ListNode node= stackPeek;
+        int i = 0;
+        while (node != null){
+            array[i] = node.val;
+            node = node.next;
+            i++;
+        }
+        return array;
     }
 
 }
