@@ -57,10 +57,12 @@ class LinkedListQueue{
     public int[] toArray(){
         int[] arr = new int[queSize];
 
+        var cp = front;
+
         for (int i = 0; i < queSize; i++) {
-            arr[i] = front.val;
-            if (front!=null){
-                front = front.next;
+            arr[i] = cp.val;
+            if (cp!=null){
+                cp = cp.next;
             }
         }
         return arr;
