@@ -2,61 +2,73 @@ package stack_and_queue;
 
 import utils.ListNode;
 
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.Arrays;
 
-class LinkedListStack {
-    private ListNode stackPeek;
-    private int stkSize = 0;
 
-    public LinkedListStack(){
-        stackPeek = null;
+
+class LinkedListQueue{
+
+    ListNode front, rear;
+    int queSize;
+
+    public LinkedListQueue(){
+        front = null;
+        rear = null;
+    }
+
+    public void push(int item){
+        ListNode nd = new ListNode(item);
+        if (front == null){
+            front = nd;
+            front.next = rear;
+        }else {
+            rear.next = nd;
+        }
+        rear = nd;
+        queSize++;
+    }
+
+    public int pop(){
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+        var pop = front;
+        front = front.next;
+        queSize--;
+        return pop.val;
+    }
+
+    public int peek(){
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return front.val;
     }
 
     public int size(){
-        return stkSize;
+        return queSize;
     }
 
-    /* 判断栈是否为空 */
-    public boolean isEmpty() {
-        return size() == 0;
+    public boolean isEmpty(){
+        return size()==0;
     }
 
-    public void push(int num){
-        ListNode ld = new ListNode(num);
-        ld.next = stackPeek;
-        stackPeek = ld;
-        stkSize++;
-    }
-
-    /* 出栈 */
-    public int pop(){
-        var head = stackPeek;
-        stackPeek = stackPeek.next;
-        stkSize--;
-        return head.val;
-    }
-
-    /* 访问栈顶元素 */
-    public int peek(){
-        return stackPeek.val;
-    };
-
-    /* 将 List 转化为 Array 并返回 */
     public int[] toArray(){
-        int[] arr = new int[stkSize];
-        var head = stackPeek;
-        for (int i = 0; i < stkSize; i++) {
-            if (head != null){
-                arr[i] = head.val;
-                head = head.next;
+        int[] arr = new int[queSize];
+
+        for (int i = 0; i < queSize; i++) {
+            arr[i] = front.val;
+            if (front!=null){
+                front = front.next;
             }
         }
         return arr;
     }
-
 }
 
-public class linkedlist_stack {
+public class linkedlist_queue {
+
     public static void main(String[] args) {
         /* 初始化队列 */
         LinkedListQueue queue = new LinkedListQueue();
