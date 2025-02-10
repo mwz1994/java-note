@@ -8,6 +8,10 @@ public class ListNode {
         val = x;
     }
 
+    public void reSet(int x){
+        this.val = x;
+    }
+
     public static ListNode arrToLinkedList(int[] arr) {
         ListNode dump = new ListNode(arr[0]);
         var head = dump;
