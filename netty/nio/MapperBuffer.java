@@ -6,6 +6,7 @@ import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
+//内存映射
 public class MapperBuffer {
     static private final int start = 0;
     static private final int size = 10;

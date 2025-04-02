@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+// 直接内存
 public class DirectBuffer {
     public static void main(String[] args) throws IOException {
         FileInputStream fileInputStream = new FileInputStream("/Users/wenzhenma/Desktop/error.txt");
