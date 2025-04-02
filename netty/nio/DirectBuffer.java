@@ -15,6 +15,7 @@ public class DirectBuffer {
         FileOutputStream fileOutputStream = new FileOutputStream("/Users/wenzhenma/Desktop/error-output7.txt");
         FileChannel outputStreamChannel = fileOutputStream.getChannel();
 
+//        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(10);
         ByteBuffer byteBuffer = ByteBuffer.allocate(10);
 
         while (true){
