@@ -14,7 +14,7 @@ public class FileChannel001 {
 
         FileChannel fileChannel = fileOutputStream.getChannel();
 
-        ByteBuffer byteBuffer = ByteBuffer.allocate(20);
+        ByteBuffer byteBuffer = ByteBuffer.allocate(str.length());
 
         byteBuffer.put(str.getBytes());
 
