@@ -27,7 +27,7 @@ public class ScatteringAndGatheringTest {
         SocketChannel socketChannel = serverSocketChannel.accept();
 
 
-        int messageLength = 8;
+        int messageLength = 10;
 
         while (true){
             int byteRead = 0;
@@ -38,7 +38,10 @@ public class ScatteringAndGatheringTest {
 
                 System.out.println("byteRead = "+ byteRead);
 
-                Arrays.asList(byteBuffers).stream().map(buffer -> " position = "+ buffer.position() + " , limit = "+ buffer.limit());
+                for (int i = 0; i < 3; i++) {
+                    var buffer = byteBuffers[i];
+                    System.out.println("buffer["+i+"]" + " position = "+ buffer.position() + " , limit = "+ buffer.limit());
+                }
             }
 
             Arrays.asList(byteBuffers).stream().forEach(byteBuffer -> byteBuffer.flip());
@@ -50,7 +53,11 @@ public class ScatteringAndGatheringTest {
                 byteWrite += l;
             }
 
-            Arrays.asList(byteBuffers).stream().forEach( byteBuffer -> byteBuffer.clear());
+            for (int i = 0; i < 3; i++) {
+                var buffer = byteBuffers[i];
+                buffer.clear();
+                System.out.println("buffer["+i+"] clear");
+            }
 
             System.out.println("byteRead = "+ byteRead + " ,byteWrite = "+ byteWrite + " , messageLength = "+ messageLength);
         }
