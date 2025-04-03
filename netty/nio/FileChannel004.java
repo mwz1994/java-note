@@ -18,6 +18,8 @@ public class FileChannel004 {
 
         fileChannel.read(byteBuffer);
 
+        fileChannel.close();
+
         String result = new String(byteBuffer.array());
 
         System.out.println("read result is --> "+ result);
