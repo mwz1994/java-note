@@ -1,25 +1,21 @@
 package netty.groupchat;
 
-import netty.nio.BasicBuffer;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Scanner;
 
-public class GroupChatClient {
+public class GroupChatClient2 {
     private final String HOST = "127.0.0.1";//服务器的ip
     private final int PORT = 6667;//服务器端口
     private Selector selector;
     private SocketChannel socketChannel;
     private String username;
 
-    public GroupChatClient() throws IOException {
+    public GroupChatClient2() throws IOException {
         selector = Selector.open();
         socketChannel = SocketChannel.open(new InetSocketAddress(HOST,PORT));
         // 设置为非阻塞
@@ -73,7 +69,7 @@ public class GroupChatClient {
 
 
     public static void main(String[] args) throws IOException {
-        GroupChatClient chatClient = new GroupChatClient();
+        GroupChatClient2 chatClient = new GroupChatClient2();
 
         new Thread(() -> {
             while (true){
