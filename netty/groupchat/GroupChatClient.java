@@ -86,6 +86,17 @@ public class GroupChatClient {
             }
         });
 
+        new Thread(() -> {
+            while (true){
+                chatClient.readInfo();
+                try {
+                    Thread.sleep(1000*5);
+                }catch (Exception e){
+                    System.out.println("sleep ex");
+                }
+            }
+        });
+
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()){
             chatClient.sendInfo(scanner.next());

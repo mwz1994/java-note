@@ -69,7 +69,7 @@ public class GroupChatServer {
         try {
             // 得到 channel
             channel = (SocketChannel) key.channel();
-            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(20);
 
             int count = channel.read(byteBuffer);
             if (count>0){
