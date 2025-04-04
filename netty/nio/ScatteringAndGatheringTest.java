@@ -12,7 +12,7 @@ public class ScatteringAndGatheringTest {
     public static void main(String[] args) throws IOException {
         // 使用 ServerSocketChannel 和 SocketChannel 网络
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        SocketAddress socketAddress = new InetSocketAddress(7000);
+        SocketAddress socketAddress = new InetSocketAddress(7777);
 
         // 端口绑定 socket
         serverSocketChannel.socket().bind(socketAddress);
@@ -34,6 +34,7 @@ public class ScatteringAndGatheringTest {
 
             while (byteRead< messageLength){
                 long l = socketChannel.read(byteBuffers);
+                System.out.println("socketChannel read result --> "+ l);
                 byteRead +=l;
 
                 System.out.println("byteRead = "+ byteRead);
