@@ -75,7 +75,7 @@ public class GroupChatClient2 {
             while (true){
                 chatClient.readInfo();
                 try {
-                    Thread.sleep(1000*3);
+                    Thread.sleep(1000*5);
                 }catch (Exception e){
                     System.out.println("sleep ex");
                 }
