@@ -48,7 +48,7 @@ public class GroupChatClient2 {
 
                     if (key.isReadable()){
                         SocketChannel sc = (SocketChannel) key.channel();
-                        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+                        ByteBuffer byteBuffer = ByteBuffer.allocate(64);
 
                         sc.read(byteBuffer);
 
@@ -80,7 +80,7 @@ public class GroupChatClient2 {
                     System.out.println("sleep ex");
                 }
             }
-        });
+        }).start();
 
 
         Scanner scanner = new Scanner(System.in);

@@ -34,9 +34,7 @@ public class GroupChatClient {
     public void sendInfo(String info){
         String msg = username + " 说： "+info;
         try {
-            ByteBuffer byteBuffer = ByteBuffer.wrap(msg.getBytes());
-
-            socketChannel.write(byteBuffer);
+            socketChannel.write(ByteBuffer.wrap(msg.getBytes()));
         }catch (Exception e){
             System.out.println("ex when sendInfo "+e.getMessage());
         }
@@ -52,7 +50,7 @@ public class GroupChatClient {
 
                     if (key.isReadable()){
                         SocketChannel sc = (SocketChannel) key.channel();
-                        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+                        ByteBuffer byteBuffer = ByteBuffer.allocate(64);
 
                         sc.read(byteBuffer);
 
@@ -84,7 +82,7 @@ public class GroupChatClient {
                     System.out.println("sleep ex");
                 }
             }
-        });
+        }).start();
 
 
         Scanner scanner = new Scanner(System.in);

@@ -7,7 +7,7 @@ import java.nio.channels.*;
 
 public class GroupChatServer {
     private Selector selector;
-    private ServerSocketChannel listenChannel;
+    private ServerSocketChannel serverSocketChannel;
 
     private final static int PORT = 6667;
 
@@ -17,11 +17,11 @@ public class GroupChatServer {
             // 得到选择器
             selector  = Selector.open();
 
-            listenChannel = ServerSocketChannel.open();
+            serverSocketChannel = ServerSocketChannel.open();
 
-            listenChannel.socket().bind(new InetSocketAddress(PORT));
-            listenChannel.configureBlocking(false);
-            listenChannel.register(selector, SelectionKey.OP_ACCEPT);
+            serverSocketChannel.socket().bind(new InetSocketAddress(PORT));
+            serverSocketChannel.configureBlocking(false);
+            serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
         }catch (Exception e){
             System.out.println("ex when start group-chat server "+ e.getMessage());
@@ -40,7 +40,7 @@ public class GroupChatServer {
                         SelectionKey key = iterator.next();
                         // 监听 accept
                         if (key.isAcceptable()){
-                            SocketChannel sc = listenChannel.accept();
+                            SocketChannel sc = serverSocketChannel.accept();
                             sc.configureBlocking(false);
                             // 将该 sc 注册到 selector
                             sc.register(selector,SelectionKey.OP_READ );
@@ -69,7 +69,7 @@ public class GroupChatServer {
         try {
             // 得到 channel
             channel = (SocketChannel) key.channel();
-            ByteBuffer byteBuffer = ByteBuffer.allocate(20);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(64);
 
             int count = channel.read(byteBuffer);
             if (count>0){
