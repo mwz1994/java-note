@@ -12,8 +12,9 @@ public class NewIOServer {
         InetSocketAddress address = new InetSocketAddress(7001);
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
 
-        ServerSocket serverSocket = serverSocketChannel.socket();
+//        serverSocketChannel.bind(address);
 
+        ServerSocket serverSocket = serverSocketChannel.socket();
         serverSocket.bind(address);
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(512);
