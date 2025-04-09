@@ -2,19 +2,17 @@ package netty.copy;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.SocketChannel;
 
-public class NewIOClientLegacy {
+public class LegacyIOClient {
     public static void main(String[] args) throws IOException {
 
-        String filename = "/Users/wenzhenma/Downloads/googlechrome.dmg";
+        String filename = "/Users/wenzhenma/Downloads/googlechrome.dmg";;
+        InetSocketAddress address = new InetSocketAddress(7002);
+        Socket socket = new Socket();
+        socket.bind(address);
 
         try (
-                Socket socket = new Socket("localhost",7001);
                 FileInputStream inputStream = new FileInputStream(filename);
                 OutputStream outputStream = socket.getOutputStream();
                 ){
