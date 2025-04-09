@@ -11,7 +11,7 @@ public class NewIOClient {
         SocketChannel socketChannel = SocketChannel.open();
         socketChannel.connect(new InetSocketAddress("localhost",7001));
 
-        String filename = "/Users/wenzhenma/Desktop/《凤凰架构》.pdf";
+        String filename = "/Users/wenzhenma/Downloads/googlechrome.dmg";
 
         FileChannel fileChannel = new FileInputStream(filename).getChannel();
 

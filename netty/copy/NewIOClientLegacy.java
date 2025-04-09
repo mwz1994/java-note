@@ -11,7 +11,7 @@ import java.nio.channels.SocketChannel;
 public class NewIOClientLegacy {
     public static void main(String[] args) throws IOException {
 
-        String filename = "/Users/wenzhenma/Desktop/《凤凰架构》.pdf";
+        String filename = "/Users/wenzhenma/Downloads/googlechrome.dmg";
 
         try (
                 Socket socket = new Socket("localhost",7001);
