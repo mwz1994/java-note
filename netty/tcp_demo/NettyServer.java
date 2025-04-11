@@ -1,5 +1,8 @@
 package netty.tcp_demo;
 
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+
 public class NettyServer {
     public static void main(String[] args) {
         // 创建 BossGroup 和 WorkerGroup
@@ -10,6 +13,6 @@ public class NettyServer {
         // 4. bossGroup 和 workerGroup 含有的子线程（NioEventLoop ）个数
         // 默认实际 cpu 核数*2
 
-        EventLoopGroup eventLoopGroup = new Ev
+        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
     }
 }
