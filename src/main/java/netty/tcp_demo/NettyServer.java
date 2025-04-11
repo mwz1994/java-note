@@ -33,7 +33,8 @@ public class NettyServer {
                     .option(ChannelOption.SO_BACKLOG,128) // 设置线程队列得到链接个数
                     .childOption(ChannelOption.SO_KEEPALIVE, true) // 设置保持活动链接
                     .childHandler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel ch){
+                        @Override
+                        protected void initChannel(SocketChannel ch) throws Exception {
                             System.out.println("客户 socketchannel hashcode = " + ch.hashCode());
                             ch.pipeline().addLast(new NettyServerHandler());
                         }
@@ -58,6 +59,9 @@ public class NettyServer {
             cf.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } finally {
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
         }
     }
 }
