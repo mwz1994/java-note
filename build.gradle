@@ -11,6 +11,7 @@ dependencies {
     // Netty 核心依赖（最新版本见 https://netty.io/）
     implementation 'io.netty:netty-all:4.0.0.Final'
     implementation 'io.netty:netty-transport:4.0.0.Final'
+    implementation 'io.netty:netty-handler:4.2.0.Final'
 }
 
 //application {
