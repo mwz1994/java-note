@@ -3,7 +3,6 @@ package hash_table;
 import utils.ListNode;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class built_in_hash {
     public static void main(String[] args) {

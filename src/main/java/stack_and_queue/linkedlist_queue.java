@@ -2,7 +2,6 @@ package stack_and_queue;
 
 import utils.ListNode;
 
-import java.lang.reflect.InaccessibleObjectException;
 import java.util.Arrays;
 
 

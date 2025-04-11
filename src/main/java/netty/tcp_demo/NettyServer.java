@@ -13,6 +13,11 @@ public class NettyServer {
         // 4. bossGroup 和 workerGroup 含有的子线程（NioEventLoop ）个数
         // 默认实际 cpu 核数*2
 
-        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
+        var nThreads = Runtime.getRuntime().availableProcessors() * 2;
+
+        System.out.println("default threads --> "+ nThreads);
+
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
     }
 }
