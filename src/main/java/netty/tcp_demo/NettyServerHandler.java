@@ -5,6 +5,8 @@ import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.util.CharsetUtil;
 
+import static netty.tcp_demo.NettyServer.getThreadName;
+
 @ChannelHandler.Sharable
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     // 读取数据实际（这里我们可以读取客户端发送的消息）
@@ -16,11 +18,11 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception{
-        System.out.println("服务器读取线程 "+ Thread.currentThread().getName() + " channel = " + ctx.channel());
+        System.out.println(getThreadName()+"服务器读取线程 "+ Thread.currentThread().getName() + " channel = " + ctx.channel());
 
-        System.out.println("server ctx = "+ ctx);
+        System.out.println(getThreadName()+"server ctx = "+ ctx);
 
-        System.out.println("看看 channel 和 pipeline 的关系");
+        System.out.println(getThreadName()+"看看 channel 和 pipeline 的关系");
 
         Channel channel = ctx.channel();
 
@@ -30,8 +32,8 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         // ByteBuf 是 netty 提供的，不是 NIO 的 ByteBuffer
         ByteBuf byteBuf = (ByteBuf) msg;
 
-        System.out.println("客户端发送信息: " + byteBuf.toString(CharsetUtil.UTF_8));
-        System.out.println("客户端地址: " + channel.remoteAddress());
+        System.out.println(getThreadName()+"客户端发送信息: " + byteBuf.toString(CharsetUtil.UTF_8));
+        System.out.println(getThreadName()+"客户端地址: " + channel.remoteAddress());
     }
 
 

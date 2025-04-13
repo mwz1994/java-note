@@ -7,6 +7,10 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 public class NettyServer {
+
+    public static String getThreadName(){
+        return "当前线程 ["+Thread.currentThread().getName()+"], ";
+    }
     public static void main(String[] args) {
         // 创建 BossGroup 和 WorkerGroup
         // 说明
@@ -18,7 +22,7 @@ public class NettyServer {
 
         var nThreads = Runtime.getRuntime().availableProcessors() * 2;
 
-        System.out.println("default threads --> "+ nThreads);
+        System.out.println(getThreadName()+" default threads --> "+ nThreads);
 
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -35,12 +39,12 @@ public class NettyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            System.out.println("客户 socketchannel hashcode = " + ch.hashCode());
+                            System.out.println(getThreadName()+"客户 socketchannel hashcode = " + ch.hashCode());
                             ch.pipeline().addLast(new NettyServerHandler());
                         }
                     }); // 给我们的 workerGroup 的 eventLoop 对应的管道设置处理器
 
-            System.out.println("....服务器 is ready....");
+            System.out.println(getThreadName()+"....服务器 is ready....");
 
             // 绑定一个端口并且同步，生成了一个 ChannelFuture
             ChannelFuture cf = bootstrap.bind(6668).sync();
@@ -50,9 +54,9 @@ public class NettyServer {
                 @Override
                 public void operationComplete(ChannelFuture channelFuture) throws Exception {
                     if (channelFuture.isSuccess()){
-                        System.out.println("监听端口 6668 成功");
+                        System.out.println(getThreadName()+"监听端口 6668 成功");
                     }else {
-                        System.out.println("监听端口 6668 失败");
+                        System.out.println(getThreadName()+"监听端口 6668 失败");
                     }
                 }
             });

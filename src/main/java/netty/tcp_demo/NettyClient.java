@@ -10,6 +10,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.function.BooleanSupplier;
 
+import static netty.tcp_demo.NettyServer.getThreadName;
+
 public class NettyClient {
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -29,7 +31,7 @@ public class NettyClient {
                         }
                     });
 
-            System.out.println("客户端 ok ....");
+            System.out.println(getThreadName()+"客户端 ok ....");
             // 启动客户端去链接服务器
             // 关于 ChannelFuture 要分析 涉及到 netty 的异步模型
             ChannelFuture channelFuture = bootstrap.connect("127.0.0.1", 6668).sync();
