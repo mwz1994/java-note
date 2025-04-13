@@ -49,7 +49,7 @@ public class NettyServer {
             cf.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture channelFuture) throws Exception {
-                    if (cf.isSuccess()){
+                    if (channelFuture.isSuccess()){
                         System.out.println("监听端口 6668 成功");
                     }else {
                         System.out.println("监听端口 6668 失败");
