@@ -7,7 +7,6 @@ import io.netty.util.CharsetUtil;
 
 import static netty.tcp_demo.NettyServer.getThreadName;
 
-@ChannelHandler.Sharable
 public class NettyServerHandler extends ChannelInboundHandlerAdapter {
     // 读取数据实际（这里我们可以读取客户端发送的消息）
     /**
