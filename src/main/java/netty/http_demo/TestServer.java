@@ -16,7 +16,7 @@ public class TestServer {
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new TestServerInitializer());
 
-            var channelFuture = serverBootstrap.bind(8000).sync();
+            var channelFuture = serverBootstrap.bind(7000).sync();
 
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {

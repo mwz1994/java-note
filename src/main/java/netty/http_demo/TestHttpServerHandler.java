@@ -54,17 +54,8 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
             response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
 
-            setCorsHeaders(response); // 添加CORS头
-
             //将构建好 response返回
             ctx.writeAndFlush(response);
         }
-    }
-
-    private void setCorsHeaders(FullHttpResponse response) {
-        response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
-        response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, OPTIONS");
-        response.headers().set(HttpHeaderNames.ACCESS_CONTROL_ALLOW_HEADERS, "Content-Type");
-        response.headers().set(HttpHeaderNames.ACCESS_CONTROL_MAX_AGE, "86400");
     }
 }
