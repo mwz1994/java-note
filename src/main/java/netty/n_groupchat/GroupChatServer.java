@@ -50,8 +50,6 @@ public class GroupChatServer {
 
             //监听关闭
             channelFuture.channel().closeFuture().sync();
-        }catch (Exception ex){
-
         }finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
@@ -59,6 +57,6 @@ public class GroupChatServer {
     }
 
     public static void main(String[] args) throws Exception {
-        new GroupChatServer(7000).run();
+        new GroupChatServer(7001).run();
     }
 }
