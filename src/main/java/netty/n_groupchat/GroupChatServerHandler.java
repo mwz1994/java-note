@@ -65,13 +65,13 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
     //读取数据
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-
+        System.out.println("进入 channelRead0 方法");
         //获取到当前channel
         Channel channel = ctx.channel();
         //这时我们遍历channelGroup, 根据不同的情况，回送不同的消息
 
         channelGroup.forEach(ch -> {
-            System.out.println(getThreadName()+"服务端收到了消息 "+ msg);
+            System.out.println(getThreadName()+"收收收收收到了消息 "+ msg);
             if (channel != ch) { //不是当前的channel,转发消息
                 ch.writeAndFlush(getThreadName()+"[客户]" + channel.remoteAddress() + " 发送了消息" + msg + "\n");
             } else {//回显自己发送的消息给自己
