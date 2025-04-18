@@ -2,13 +2,14 @@ package netty.n_groupchat;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.text.SimpleDateFormat;
+
+import static netty.tcp_demo.NettyServer.getThreadName;
 
 public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> {
 
@@ -27,6 +28,7 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
     //将当前channel 加入到  channelGroup
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+        System.out.println(getThreadName()+"handler added");
         Channel channel = ctx.channel();
         //将该客户加入聊天的信息推送给其它在线的客户端
         /*
@@ -45,22 +47,19 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
 
         Channel channel = ctx.channel();
         channelGroup.writeAndFlush("[客户端]" + channel.remoteAddress() + " 离开了\n");
-        System.out.println("channelGroup size" + channelGroup.size());
-
+        System.out.println(getThreadName()+"channelGroup size" + channelGroup.size());
     }
 
     //表示channel 处于活动状态, 提示 xx上线
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-
-        System.out.println(ctx.channel().remoteAddress() + " 上线了~");
+        System.out.println(getThreadName()+ctx.channel().remoteAddress() + " 上线了~");
     }
 
     //表示channel 处于不活动状态, 提示 xx离线了
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-
-        System.out.println(ctx.channel().remoteAddress() + " 离线了~");
+        System.out.println(getThreadName()+ctx.channel().remoteAddress() + " 离线了~");
     }
 
     //读取数据
@@ -73,9 +72,9 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
 
         channelGroup.forEach(ch -> {
             if (channel != ch) { //不是当前的channel,转发消息
-                ch.writeAndFlush("[客户]" + channel.remoteAddress() + " 发送了消息" + msg + "\n");
+                ch.writeAndFlush(getThreadName()+"[客户]" + channel.remoteAddress() + " 发送了消息" + msg + "\n");
             } else {//回显自己发送的消息给自己
-                ch.writeAndFlush("[自己]发送了消息" + msg + "\n");
+                ch.writeAndFlush(getThreadName()+"[自己]发送了消息" + msg + "\n");
             }
         });
     }

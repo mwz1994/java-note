@@ -3,12 +3,10 @@ package netty.n_groupchat;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.nio.NioIoEvent;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import netty.copy.NewIOServer;
 
 import static netty.tcp_demo.NettyServer.getThreadName;
 
