@@ -1,4 +1,4 @@
-package netty.n_groupchat;
+package netty.nio_groupchat;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
