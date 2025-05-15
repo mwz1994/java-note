@@ -6,18 +6,12 @@ import java.util.Map;
 
 public class TransportValueDemo {
 
-
-
-
-
     public static void main(String[] args) {
         UserDemo user = new UserDemo();
         user.setAge(18);
         user.setSex(1);
         user.setName("张三");
-        ;
-
-
+        var m = Math.max(10,100);
 
         System.out.println("字符串修改前:"+ user.toString());
         changeStr(user);

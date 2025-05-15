@@ -8,6 +8,12 @@ public class UserDemo{
     public UserDemo() {
     }
 
+    public UserDemo(int age, int sex, String name) {
+        this.age = age;
+        this.sex = sex;
+        this.name = name;
+    }
+
     public int getAge() {
         return age;
     }
